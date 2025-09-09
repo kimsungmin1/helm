@@ -33,16 +33,15 @@ type RegistryScopeTestSuite struct {
 
 func (suite *RegistryScopeTestSuite) SetupSuite() {
 	// set registry use token auth
-	dockerRegistry := setup(&suite.TestSuite, true, true, "token")
-	// Start Docker registry
-	go dockerRegistry.ListenAndServe()
+	setup(&suite.TestSuite, true, true, "token")
+
 }
 func (suite *RegistryScopeTestSuite) TearDownSuite() {
 	teardown(&suite.TestSuite)
 	os.RemoveAll(suite.WorkspaceDir)
 }
 
-func (suite *RegistryScopeTestSuite) Test_1_Cehck_Push_Request_Scope() {
+func (suite *RegistryScopeTestSuite) Test_1_Check_Push_Request_Scope() {
 
 	//set simple auth server to check the auth request scope
 	server := &http.Server{
@@ -75,7 +74,7 @@ func (suite *RegistryScopeTestSuite) Test_1_Cehck_Push_Request_Scope() {
 
 }
 
-func (suite *RegistryScopeTestSuite) Test_2_Cehck_Pull_Request_Scope() {
+func (suite *RegistryScopeTestSuite) Test_2_Check_Pull_Request_Scope() {
 
 	//set simple auth server to check the auth request scope
 	server := &http.Server{
